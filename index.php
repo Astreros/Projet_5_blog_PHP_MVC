@@ -9,7 +9,7 @@ $action = Utils::request('action', 'home');
 
 // Try catch global pour gérer les erreurs
 try {
-    // Pour chaque action, on appelle le bon contrôleur et la bonne méthode.
+    // Pour chaque action, on appelle le bon contrôleur et la bonne méthode.t
     switch ($action) {
         // Pages accessibles à tous.
         case 'home':
