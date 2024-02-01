@@ -92,4 +92,18 @@ class ArticleManager extends AbstractEntityManager
         $sql = "DELETE FROM article WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
     }
+
+    /**
+     * Ajoute 1 au compteur de vu d'un article avec son id.
+     * @param Article $article : l'id de l'article auquel il faut ajouter 1 à son compteur de vue.
+     * @return void
+     */
+    public function addView($id) : void
+    {
+        $sql = "INSERT INTO article (id, nb_views) VALUES (:id, :nb_views) ON DUPLICATE KEY UPDATE nb_views = nb_views + 1;";
+        $this->db->query($sql, [
+            'id' => $id,
+            'nb_views' => 1
+        ]);
+    }
 }

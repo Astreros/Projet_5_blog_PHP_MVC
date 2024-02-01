@@ -36,6 +36,8 @@ class ArticleController
 
         $view = new View($article->getTitle());
         $view->render("detailArticle", ['article' => $article, 'comments' => $comments]);
+
+        $this->updateArticleViews($id);
     }
 
     /**
@@ -55,5 +57,20 @@ class ArticleController
     public function showApropos() {
         $view = new View("A propos");
         $view->render("apropos");
+    }
+
+    /**
+     * Mets à jour le nombre de vues de l'article
+     * @return void
+     */
+    public function updateArticleViews($id) : void
+    {
+        $articleManager = new ArticleManager();
+
+        if (!$_SESSION['articlesViewed'] || !in_array($id, $_SESSION['articlesViewed'])) {
+
+            $_SESSION['articlesViewed'][] = $id;
+            $articleManager->addView($id);
+        }
     }
 }

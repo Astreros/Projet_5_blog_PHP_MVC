@@ -10,7 +10,8 @@
     private string $title = "";
     private string $content = "";
     private ?DateTime $dateCreation = null;
-    private ?DateTime $dateUpdate = null;  
+    private ?DateTime $dateUpdate = null;
+    private int $nbViews = 0;
 
     /**
      * Setter pour l'id de l'utilisateur. 
@@ -55,6 +56,16 @@
     public function setContent(string $content) : void 
     {
         $this->content = $content;
+    }
+
+    public function getNbViews(): ?int
+    {
+        return $this->nbViews;
+    }
+
+    public function setNbViews(int $nbViews): void
+    {
+        $this->nbViews = $nbViews;
     }
 
     

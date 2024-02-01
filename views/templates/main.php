@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Ce fichier est le template principal qui "contient" ce qui aura été généré par les autres vues.  
  * 
@@ -6,7 +6,6 @@
  *      $title string : le titre de la page.
  *      $content string : le contenu de la page. 
  */
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
