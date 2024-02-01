@@ -120,7 +120,7 @@ class ArticleManager extends AbstractEntityManager
         $nbComment = $result->fetch()['nb_comment'];
 
         if ($nbComment == null){
-            return null;
+            return $nbComment = 0;
         }
 
         return $nbComment;

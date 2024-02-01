@@ -39,5 +39,6 @@
         <p>Copyright © Emilie Forteroche 2023 - Openclassrooms - <a href="index.php?action=admin">Admin</a>
     </footer>
 
+    <script src="https://kit.fontawesome.com/2a6a340678.js" crossorigin="anonymous"></script>
 </body>
 </html>

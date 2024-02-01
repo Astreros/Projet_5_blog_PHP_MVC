@@ -305,16 +305,41 @@ a.info {
 
 /**
  * Partie admin
- */ 
+ */
 
-.adminArticle {
+.nav-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.nav-container a {
+    margin-right: 50px;
+
+}
+
+.nav-container a.active {
+    text-decoration: underline var(--headerColor) 5px;
+    text-underline-offset: 10px;
+}
+
+.nav-container a h2 {
+    color: var(--headerColor);
+}
+
+.nav-container a.active h2 {
+
+}
+
+.admin-article {
     margin-bottom: 20px;
     background-color: var(--commentPaleColor);
     color: white;
 }
 
 .articleLine {
-    display: flex; 
+    display: flex;
+
 }
 
 .articleLine div {
@@ -336,6 +361,42 @@ a.info {
     padding: 20px;
     border: 1px solid var(--backgroundColor);
 }
+
+.admin-monitoring {
+    margin-right: auto;
+}
+
+.table-Monitoring {
+    width: 100%;
+}
+
+.table-Monitoring th {
+    background-color: var(--commentColor);
+    color: white;
+    padding: 5px;
+}
+
+.table-Monitoring th i {
+
+    margin-left: 10px;
+}
+
+
+.monitoring-line {
+    background-color: var(--commentPaleColor);
+    color: white;
+}
+
+.monitoring-line.light {
+    background-color: var(--headerPaleColor);
+    color: black;
+}
+
+.monitoring-line td {
+    padding: 5px;
+
+}
+
 
 /** 
  * Footer global de la page.
