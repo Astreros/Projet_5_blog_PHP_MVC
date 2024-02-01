@@ -67,6 +67,10 @@ class ArticleController
     {
         $articleManager = new ArticleManager();
 
+        if ($_SESSION['user']) {
+            return;
+        }
+
         if (!$_SESSION['articlesViewed'] || !in_array($id, $_SESSION['articlesViewed'])) {
 
             $_SESSION['articlesViewed'][] = $id;
