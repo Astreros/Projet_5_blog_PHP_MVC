@@ -109,9 +109,14 @@
      * Grâce au setter, on a la garantie de récupérer un objet DateTime.
      * @return DateTime
      */
-    public function getDateCreation() : DateTime 
+    public function getDateCreation() : DateTime
     {
         return $this->dateCreation;
+    }
+
+    public function getDateCreationFrenchFormat(): string
+    {
+        return Utils::convertDateToFrenchFormat($this->dateCreation);
     }
 
     /**
@@ -138,4 +143,10 @@
     {
         return $this->dateUpdate;
     }
+
+     public function getNbComment() : ?int
+     {
+         $articleManager = new ArticleManager();
+         return $articleManager->getNbCommentByArticleId($this->getId());
+     }
  }

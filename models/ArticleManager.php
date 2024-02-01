@@ -95,7 +95,7 @@ class ArticleManager extends AbstractEntityManager
 
     /**
      * Ajoute 1 au compteur de vu d'un article avec son id.
-     * @param Article $article : l'id de l'article auquel il faut ajouter 1 à son compteur de vue.
+     * @param $id
      * @return void
      */
     public function addView($id) : void
@@ -105,5 +105,24 @@ class ArticleManager extends AbstractEntityManager
             'id' => $id,
             'nb_views' => 1
         ]);
+    }
+
+    /**
+     * Permet de récupérer le nombre de commentaires pour un article via son id.
+     * @param $id
+     * @return int|null
+     */
+    public function getNbCommentByArticleId($id)  : int|null
+    {
+        $sql = "SELECT COUNT(*) AS nb_comment FROM comment WHERE id_article = :id";
+        $result = $this->db->query($sql, ['id' => $id]);
+
+        $nbComment = $result->fetch()['nb_comment'];
+
+        if ($nbComment == null){
+            return null;
+        }
+
+        return $nbComment;
     }
 }

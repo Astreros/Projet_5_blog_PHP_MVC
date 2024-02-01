@@ -18,10 +18,14 @@ class AdminController {
         $articleManager = new ArticleManager();
         $articles = $articleManager->getAllArticles();
 
+        // On récupère la section admin demandé
+        $section = Utils::request("section");
+
         // On affiche la page d'administration.
         $view = new View("Administration");
         $view->render("admin", [
-            'articles' => $articles
+            'articles' => $articles,
+            'section' => $section
         ]);
     }
 
