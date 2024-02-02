@@ -196,6 +196,18 @@ class AdminController {
         Utils::redirect("admin");
     }
 
+    /**
+     * Supprimez un commentaire.
+     *
+     * Cette méthode supprime un commentaire en effectuant les étapes suivantes :
+     * Vérifie si l'utilisateur est connecté.
+     * Récupère l'ID du commentaire et l'ID de l'article à partir des paramètres de la demande.
+     * Récupère le commentaire par son ID à l'aide du CommentManager.
+     * Supprime le commentaire à l'aide du CommentManager.
+     * Redirige vers la page showArticle, en passant l'ID de l'article en paramètre.
+     *
+     * @return void
+     */
     public function deleteComment(): void
     {
 

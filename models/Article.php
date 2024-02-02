@@ -145,8 +145,9 @@
     }
 
      /**
-      * Récupération du nombre de commentaires via l'id de l'article en cours
-      * @return ?int
+      * Récupère le nombre de commentaires pour l’article donné.
+      *
+      * @return int|null Le nombre de commentaires pour l'article, ou nul s'il n'a pas pu être déterminé.
       */
      public function getNbComment() : ?int
      {

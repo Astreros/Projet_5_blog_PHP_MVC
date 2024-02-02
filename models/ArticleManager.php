@@ -94,8 +94,9 @@ class ArticleManager extends AbstractEntityManager
     }
 
     /**
-     * Ajoute 1 au compteur de vu d'un article avec son id.
-     * @param $id
+     * Ajoute une vue à un article donné.
+     *
+     * @param int $id L'identifiant de l'article.
      * @return void
      */
     public function addView($id) : void
@@ -108,9 +109,10 @@ class ArticleManager extends AbstractEntityManager
     }
 
     /**
-     * Permet de récupérer le nombre de commentaires pour un article via son id.
-     * @param $id
-     * @return int|null
+     * Récupère le nombre de commentaires pour un ID d'article donné.
+     *
+     * @param int $id L'identifiant de l'article.
+     * @return int|null Le nombre de commentaires pour l’ID d’article donné. Renvoie null si aucun commentaire n'est trouvé.
      */
     public function getNbCommentByArticleId($id)  : int|null
     {
@@ -127,11 +129,12 @@ class ArticleManager extends AbstractEntityManager
     }
 
     /**
-     * Tri des articles en fonction de deux options de l'utilisateur
-     * @param array $articles
-     * @param string $target
-     * @param string $order
-     * @return ?array
+     * Trie le tableau d'articles en fonction de la cible et de l'ordre spécifiés.
+     *
+     * @param array $articles Le tableau des articles à trier.
+     * @param string $target La propriété cible pour trier les articles par ('title', 'date', 'view', 'comment').
+     * @param string $order L'ordre dans lequel les articles doivent être triés('ASC', 'DESC').
+     * @return array|null
      */
     public function sortArticles(array $articles, string $target, string $order): ?array
     {
