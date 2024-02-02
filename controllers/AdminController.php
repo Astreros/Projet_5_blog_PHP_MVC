@@ -199,11 +199,10 @@ class AdminController {
     /**
      * Supprimez un commentaire.
      *
-     * Cette méthode supprime un commentaire en effectuant les étapes suivantes :
-     * Vérifie si l'utilisateur est connecté.
+     * Vérifie si l'admin est connecté.
      * Récupère l'ID du commentaire et l'ID de l'article à partir des paramètres de la demande.
-     * Récupère le commentaire par son ID à l'aide du CommentManager.
-     * Supprime le commentaire à l'aide du CommentManager.
+     * Récupère le commentaire par son ID
+     * Supprime le commentaire
      * Redirige vers la page showArticle, en passant l'ID de l'article en paramètre.
      *
      * @return void
