@@ -112,6 +112,11 @@ form .formGrid .submit {
     border: none;
 }
 
+/*.delete-comment {*/
+/*    display: flex;*/
+/*    !*justify-content: flex-end;*!*/
+/*}*/
+
 .submit.delete {
     background-color: var(--titleColor);
 }
@@ -266,7 +271,7 @@ a.info {
 
 .comments li {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .comments .smiley {

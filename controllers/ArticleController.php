@@ -56,6 +56,7 @@ class ArticleController
      */
     public function showApropos() {
         $view = new View("A propos");
+        $view = new View("A propos");
         $view->render("apropos");
     }
 
@@ -67,11 +68,15 @@ class ArticleController
     {
         $articleManager = new ArticleManager();
 
-        if ($_SESSION['user']) {
+        if (isset($_SESSION['user'])) {
             return;
         }
 
-        if (!$_SESSION['articlesViewed'] || !in_array($id, $_SESSION['articlesViewed'])) {
+        if (!isset($_SESSION['articlesViewed'])) {
+            $_SESSION['articlesViewed'] = [];
+        }
+
+        if (!in_array($id, $_SESSION['articlesViewed'])) {
 
             $_SESSION['articlesViewed'][] = $id;
             $articleManager->addView($id);

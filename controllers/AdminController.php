@@ -195,4 +195,20 @@ class AdminController {
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
     }
+
+    public function deleteComment(): void
+    {
+
+        $this->checkIfUserIsConnected();
+
+        $id = Utils::request('id', -1);
+        $idArticle = Utils::request('idArticle');
+
+        $commentManager = new CommentManager();
+        $comment = $commentManager->getCommentById($id);
+
+        $commentManager->deleteComment($comment);
+
+        Utils::redirect('showArticle', ['id' => $idArticle]);
+    }
 }
