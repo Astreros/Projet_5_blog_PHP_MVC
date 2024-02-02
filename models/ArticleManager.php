@@ -125,4 +125,94 @@ class ArticleManager extends AbstractEntityManager
 
         return $nbComment;
     }
+
+    /**
+     * Tri des articles en fonction de deux options de l'utilisateur
+     * @param array $articles
+     * @param string $target
+     * @param string $order
+     * @return ?array
+     */
+    public function sortArticles(array $articles, string $target, string $order): ?array
+    {
+        if ($target === 'title') {
+
+            if ($order === 'ASC') {
+                function sortTitleAsc($a, $b): int
+                {
+                    return strcmp($a->getTitle(), $b->getTitle()) ;
+                };
+                usort($articles, "sortTitleAsc");
+
+            } else {
+                function sortTitleDesc($a, $b): int
+                {
+                    return strcmp($b->getTitle(), $a->getTitle()) ;
+                };
+                usort($articles, "sortTitleDesc");
+
+            }
+
+        } elseif ($target === 'date') {
+
+            if ($order === 'ASC') {
+                function sortDateAsc($a, $b): int
+                {
+                    return strcmp($a->getDateCreationFrenchFormat(), $b->getDateCreationFrenchFormat()) ;
+                };
+                usort($articles, "sortDateAsc");
+
+            } else {
+                function sortDateDesc($a, $b): int
+                {
+                    return strcmp($b->getDateCreationFrenchFormat(), $a->getDateCreationFrenchFormat()) ;
+                };
+
+                usort($articles, "sortDateDesc");
+            }
+
+        } elseif ($target === 'view') {
+
+            if ($order === 'ASC') {
+                function sortViewAsc($a, $b): int
+                {
+                    return strcmp($a->getNbViews(), $b->getNbViews()) ;
+                };
+
+                usort($articles, "sortViewAsc");
+
+            } else {
+                function sortViewDesc($a, $b): int
+                {
+                    return strcmp($b->getNbViews(), $a->getNbViews()) ;
+                };
+
+                usort($articles, "sortViewDesc");
+            }
+
+        } elseif ($target === 'comment') {
+
+            if ($order === 'ASC') {
+                function sortCommentAsc($a, $b): int
+                {
+                    return strcmp($a->getNbComment(), $b->getNbComment()) ;
+                };
+
+                usort($articles, "sortCommentAsc");
+
+            } else {
+                function sortCommentDesc($a, $b): int
+                {
+                    return strcmp($b->getNbComment(), $a->getNbComment()) ;
+                };
+
+                usort($articles, "sortCommentDesc");
+            }
+
+        } else {
+            return $articles;
+        }
+
+        return $articles;
+    }
 }

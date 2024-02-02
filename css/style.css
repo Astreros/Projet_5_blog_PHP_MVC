@@ -112,6 +112,10 @@ form .formGrid .submit {
     border: none;
 }
 
+.submit.delete {
+    background-color: var(--titleColor);
+}
+
 /**
  * Coin replié des formulaires
  */
@@ -387,22 +391,17 @@ a.info {
     color: white;
 }
 
-.monitoring-line.light {
+.monitoring-line.light, .articleLine.light {
     background-color: var(--headerPaleColor);
     color: black;
 }
 
 .monitoring-line td {
     padding: 5px;
-
 }
 
 th.hidden i {
     display: none;
-}
-
-.target {
-
 }
 
 

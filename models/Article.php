@@ -144,6 +144,10 @@
         return $this->dateUpdate;
     }
 
+     /**
+      * Récupération du nombre de commentaires via l'id de l'article en cours
+      * @return ?int
+      */
      public function getNbComment() : ?int
      {
          $articleManager = new ArticleManager();

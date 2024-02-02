@@ -21,18 +21,23 @@ class AdminController {
         // On récupère la section admin demandé
         $section = Utils::request("section");
 
+        // On récupère les options de filtrage de l'utilisateur
         $target = Utils::request("target");
         $order = Utils::request("order");
 
+        // Gestion par défault du filtrage
         if ($target === null || $order === null) {
             $target = 'title';
             $order = 'ASC';
         }
 
+        // filtrage selon des options utilisateur
+        $sortedArticles = $articleManager->sortArticles($articles, $target, $order);
+
         // On affiche la page d'administration.
         $view = new View("Administration");
         $view->render("admin", [
-            'articles' => $articles,
+            'articles' => $sortedArticles,
             'section' => $section,
             'target' => $target,
             'order' => $order

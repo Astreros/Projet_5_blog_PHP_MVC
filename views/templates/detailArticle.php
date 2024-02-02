@@ -33,6 +33,7 @@
                 echo '      <p class="content">' . Utils::format($comment->getContent()) . '</p>';
                 echo '  </div>';
                 echo '</li>';
+                echo '<div><a class="submit delete" href="index.php?action=deleteComment&id=<?= $comment->getId() ?>"' . '<?= Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") ?>' . 'Modération : Supprimer ce commentaire</a></div>';
             }               
             echo '</ul>';
         } 
