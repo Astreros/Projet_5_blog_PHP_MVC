@@ -397,6 +397,14 @@ a.info {
 
 }
 
+th.hidden i {
+    display: none;
+}
+
+.target {
+
+}
+
 
 /** 
  * Footer global de la page.

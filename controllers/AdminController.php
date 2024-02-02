@@ -21,11 +21,21 @@ class AdminController {
         // On récupère la section admin demandé
         $section = Utils::request("section");
 
+        $target = Utils::request("target");
+        $order = Utils::request("order");
+
+        if ($target === null || $order === null) {
+            $target = 'title';
+            $order = 'ASC';
+        }
+
         // On affiche la page d'administration.
         $view = new View("Administration");
         $view->render("admin", [
             'articles' => $articles,
-            'section' => $section
+            'section' => $section,
+            'target' => $target,
+            'order' => $order
         ]);
     }
 
