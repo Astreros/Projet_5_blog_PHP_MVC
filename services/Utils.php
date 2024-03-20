@@ -75,7 +75,7 @@ class Utils {
     }
 
     /**
-     * Cette méthode permet de récupérer une variable de la superglobale $_REQUEST.
+     * Cette méthode permet de récupérer une variable de la super-globale $_REQUEST.
      * Si cette variable n'est pas définie, on retourne la valeur null (par défaut)
      * ou celle qui est passée en paramètre si elle existe.
      * @param string $variableName : le nom de la variable à récupérer.

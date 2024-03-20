@@ -45,7 +45,7 @@ class ArticleManager extends AbstractEntityManager
      */
     public function addOrUpdateArticle(Article $article) : void 
     {
-        if ($article->getId() == -1) {
+        if ($article->getId() === -1) {
             $this->addArticle($article);
         } else {
             $this->updateArticle($article);
@@ -114,108 +114,53 @@ class ArticleManager extends AbstractEntityManager
      * @param int $id L'identifiant de l'article.
      * @return int|null Le nombre de commentaires pour l’ID d’article donné. Renvoie null si aucun commentaire n'est trouvé.
      */
-    public function getNbCommentByArticleId($id)  : int|null
+    public function getNbCommentByArticleId(int $id)  : int|null
     {
         $sql = "SELECT COUNT(*) AS nb_comment FROM comment WHERE id_article = :id";
         $result = $this->db->query($sql, ['id' => $id]);
 
         $nbComment = $result->fetch()['nb_comment'];
 
-        if ($nbComment == null){
-            return $nbComment = 0;
+        if ($nbComment === null){
+            return 0;
         }
 
         return $nbComment;
     }
 
+
     /**
-     * Trie le tableau d'articles en fonction de la cible et de l'ordre spécifiés.
+     * Récupère les articles de la base de données en fonction de la cible et de l'ordre sélectionné par l'utilisateur
      *
-     * @param array $articles Le tableau des articles à trier.
-     * @param string $target La propriété cible pour trier les articles par ('title', 'date', 'view', 'comment').
-     * @param string $order L'ordre dans lequel les articles doivent être triés('ASC', 'DESC').
-     * @return array|null
+     * @param string $target La cible de tri. Valeurs possibles : 'view', 'title', 'date', 'comment'
+     * @param string $order L'ordre de tri. Valeurs possibles : 'DESC' (décroissant), toute autre valeur sera par défaut croissant
+     * @return array|null Un tableau d'objets Article triés selon la cible et l'ordre spécifiés, ou null si la cible n'est pas valide
      */
-    public function sortArticles(array $articles, string $target, string $order): ?array
+    public function getSortArticles(string $target, string $order): ?array
     {
-        if ($target === 'title') {
+        $sql = null;
 
-            if ($order === 'ASC') {
-                function sortTitleAsc($a, $b): int
-                {
-                    return strcmp($a->getTitle(), $b->getTitle()) ;
-                };
-                usort($articles, "sortTitleAsc");
+        $targets['view'] = 'article.nb_views';
+        $targets['title'] = 'article.title';
+        $targets['date'] = 'article.date_creation';
+        $targets['comment'] = 'nbComments';
 
-            } else {
-                function sortTitleDesc($a, $b): int
-                {
-                    return strcmp($b->getTitle(), $a->getTitle()) ;
-                };
-                usort($articles, "sortTitleDesc");
+        $sql = "SELECT article.title, article.date_creation, article.nb_views,
+                        (SELECT COUNT(*) FROM comment WHERE comment.id_article = article.id) AS nbComments
+                        FROM blog_forteroche.article 
+                        ORDER BY $targets[$target]" ;
 
-            }
-
-        } elseif ($target === 'date') {
-
-            if ($order === 'ASC') {
-                function sortDateAsc($a, $b): int
-                {
-                    return strcmp($a->getDateCreationFrenchFormat(), $b->getDateCreationFrenchFormat()) ;
-                };
-                usort($articles, "sortDateAsc");
-
-            } else {
-                function sortDateDesc($a, $b): int
-                {
-                    return strcmp($b->getDateCreationFrenchFormat(), $a->getDateCreationFrenchFormat()) ;
-                };
-
-                usort($articles, "sortDateDesc");
-            }
-
-        } elseif ($target === 'view') {
-
-            if ($order === 'ASC') {
-                function sortViewAsc($a, $b): int
-                {
-                    return strcmp($a->getNbViews(), $b->getNbViews()) ;
-                };
-
-                usort($articles, "sortViewAsc");
-
-            } else {
-                function sortViewDesc($a, $b): int
-                {
-                    return strcmp($b->getNbViews(), $a->getNbViews()) ;
-                };
-
-                usort($articles, "sortViewDesc");
-            }
-
-        } elseif ($target === 'comment') {
-
-            if ($order === 'ASC') {
-                function sortCommentAsc($a, $b): int
-                {
-                    return strcmp($a->getNbComment(), $b->getNbComment()) ;
-                };
-
-                usort($articles, "sortCommentAsc");
-
-            } else {
-                function sortCommentDesc($a, $b): int
-                {
-                    return strcmp($b->getNbComment(), $a->getNbComment()) ;
-                };
-
-                usort($articles, "sortCommentDesc");
-            }
-
-        } else {
-            return $articles;
+        if ($order === 'DESC') {
+            $sql .= " DESC";
         }
 
-        return $articles;
+        $result = $this->db->query($sql);
+        $sortedArticles = [];
+
+        while ($article = $result->fetch()) {
+            $sortedArticles[] = new Article($article);
+        }
+
+        return $sortedArticles;
     }
 }

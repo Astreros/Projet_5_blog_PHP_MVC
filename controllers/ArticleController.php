@@ -56,7 +56,6 @@ class ArticleController
      */
     public function showApropos() {
         $view = new View("A propos");
-        $view = new View("A propos");
         $view->render("apropos");
     }
 

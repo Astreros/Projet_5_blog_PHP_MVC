@@ -32,12 +32,13 @@ class AdminController {
         }
 
         // filtrage selon des options utilisateur
-        $sortedArticles = $articleManager->sortArticles($articles, $target, $order);
+        $sortedArticles = $articleManager->getSortArticles($target, $order);
 
         // On affiche la page d'administration.
         $view = new View("Administration");
         $view->render("admin", [
-            'articles' => $sortedArticles,
+            'sortedArticles' => $sortedArticles,
+            'articles' => $articles,
             'section' => $section,
             'target' => $target,
             'order' => $order

@@ -12,6 +12,7 @@
     private ?DateTime $dateCreation = null;
     private ?DateTime $dateUpdate = null;
     private int $nbViews = 0;
+    private int $nbComments = 0;
 
     /**
      * Setter pour l'id de l'utilisateur. 
@@ -58,7 +59,7 @@
         $this->content = $content;
     }
 
-    public function getNbViews(): ?int
+    public function getNbViews(): int
     {
         return $this->nbViews;
     }
@@ -68,6 +69,15 @@
         $this->nbViews = $nbViews;
     }
 
+    public function setNbComments(int $nbComments): void
+    {
+        $this->nbComments = $nbComments;
+    }
+
+    public function getNbComments(): int
+    {
+        return $this->nbComments;
+    }
     
     /**
      * Getter pour le contenu.

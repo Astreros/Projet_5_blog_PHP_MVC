@@ -37,7 +37,7 @@ try {
             $commentController->addComment();
             break;
 
-        // Section admin & connexion. 
+        // Section admin et connexion.
         case 'admin': 
             $adminController = new AdminController();
             $adminController->showAdmin();

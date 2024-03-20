@@ -25,12 +25,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($articles as $key => $article) { ?>
+                    <?php foreach ($sortedArticles as $key => $article) { ?>
                         <tr class="monitoring-line <?= $key%2 ? 'light' : '' ?>">
                             <td><?= $article->getTitle() ?></td>
                             <td><?= $article->getDateCreationFrenchFormat() ?></td>
                             <td><?= $article->getNbViews() ?></td>
-                            <td><?= $article->getNbComment() ?></td>
+                            <td><?= $article->getNbComments() ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
