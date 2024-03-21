@@ -99,7 +99,7 @@ class ArticleManager extends AbstractEntityManager
      * @param int $id L'identifiant de l'article.
      * @return void
      */
-    public function addView($id) : void
+    public function addView(int $id) : void
     {
         $sql = "INSERT INTO article (id, nb_views) VALUES (:id, :nb_views) ON DUPLICATE KEY UPDATE nb_views = nb_views + 1;";
         $this->db->query($sql, [

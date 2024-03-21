@@ -210,7 +210,6 @@ class AdminController {
      */
     public function deleteComment(): void
     {
-
         $this->checkIfUserIsConnected();
 
         $id = Utils::request('id', -1);
@@ -219,8 +218,13 @@ class AdminController {
         $commentManager = new CommentManager();
         $comment = $commentManager->getCommentById($id);
 
-        $commentManager->deleteComment($comment);
+        if ($comment !== null) {
+            $commentManager->deleteComment($comment);
+            Utils::redirect('showArticle', ['id' => $idArticle]);
+        } else {
+            Utils::redirect('showArticle', ['id' => $idArticle, 'errors' => 'aucun commentaire trouvé.']);
+        }
 
-        Utils::redirect('showArticle', ['id' => $idArticle]);
+        $commentManager->deleteComment($comment);
     }
 }

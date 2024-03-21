@@ -159,9 +159,8 @@
       *
       * @return int|null Le nombre de commentaires pour l'article, ou nul s'il n'a pas pu être déterminé.
       */
-     public function getNbComment() : ?int
+     public function getNbComment() : int|null
      {
-         $articleManager = new ArticleManager();
-         return $articleManager->getNbCommentByArticleId($this->getId());
+         return (new ArticleManager())->getNbCommentByArticleId($this->getId());
      }
  }

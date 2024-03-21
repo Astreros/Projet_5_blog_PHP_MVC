@@ -18,6 +18,7 @@ class ArticleController
     /**
      * Affiche le détail d'un article.
      * @return void
+     * @throws Exception
      */
     public function showArticle() : void
     {
@@ -54,13 +55,15 @@ class ArticleController
      * Affiche la page "à propos".
      * @return void
      */
-    public function showApropos() {
+    public function showApropos(): void
+    {
         $view = new View("A propos");
         $view->render("apropos");
     }
 
     /**
      * Mets à jour le nombre de vues de l'article
+     *
      * @return void
      */
     public function updateArticleViews($id) : void
@@ -75,7 +78,7 @@ class ArticleController
             $_SESSION['articlesViewed'] = [];
         }
 
-        if (!in_array($id, $_SESSION['articlesViewed'])) {
+        if (!in_array($id, $_SESSION['articlesViewed'], true)) {
 
             $_SESSION['articlesViewed'][] = $id;
             $articleManager->addView($id);
