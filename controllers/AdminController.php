@@ -220,9 +220,9 @@ class AdminController {
 
         if ($comment !== null) {
             $commentManager->deleteComment($comment);
-            Utils::redirect('showArticle', ['id' => $idArticle]);
+            Utils::redirect('showArticle', ['id' => $idArticle, 'errors' => '']);
         } else {
-            Utils::redirect('showArticle', ['id' => $idArticle, 'errors' => 'aucun commentaire trouvé.']);
+            Utils::redirect('showArticle', ['id' => $idArticle, 'errors' => "Commentaire introuvable."]);
         }
 
         $commentManager->deleteComment($comment);

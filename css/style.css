@@ -64,6 +64,15 @@ a {
 /**
  * Styles des formulaires.
  */
+
+.error-box {
+    color: red;
+    font-size: 1rem;
+    padding: 20px 5px;
+    margin: 10px;
+    text-align: center;
+}
+
 form {
     width: 100%;
     margin-top: 30px;

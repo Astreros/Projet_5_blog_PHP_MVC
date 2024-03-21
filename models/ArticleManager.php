@@ -39,7 +39,7 @@ class ArticleManager extends AbstractEntityManager
 
     /**
      * Ajoute ou modifie un article.
-     * On sait si l'article est un nouvel article car son id sera -1.
+     * On sait si l'article est un nouvel article, car son id sera -1.
      * @param Article $article : l'article à ajouter ou modifier.
      * @return void
      */
@@ -99,15 +99,6 @@ class ArticleManager extends AbstractEntityManager
      * @param int $id L'identifiant de l'article.
      * @return void
      */
-//    public function addView(int $id) : void
-//    {
-//        $sql = "INSERT INTO article (id, nb_views) VALUES (:id, :nb_views) ON DUPLICATE KEY UPDATE nb_views = nb_views + 1;";
-//        $this->db->query($sql, [
-//            'id' => $id,
-//            'nb_views' => 1
-//        ]);
-//    }
-
     public function addView(int $id) : void
     {
         $sql = "UPDATE article SET nb_views = nb_views + 1 WHERE id = :id;";

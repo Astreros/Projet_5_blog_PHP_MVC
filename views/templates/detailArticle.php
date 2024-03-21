@@ -1,4 +1,7 @@
 <?php
+    if (Utils::request('errors')) {
+        $errors = Utils::request('errors');
+    }
     /**
      * Ce template affiche un article et ses commentaires.
      * Il affiche également un formulaire pour ajouter un commentaire.
@@ -20,6 +23,13 @@
 
 <div class="comments">
     <h2 class="commentsTitle">Vos Commentaires</h2>
+    <div class="error-box">
+        <?php
+        if (isset($errors)) {
+            echo $errors;
+        }
+        ?>
+    </div>
     <?php 
         if (empty($comments)) {
             echo '<p class="info">Aucun commentaire pour cet article.</p>';
@@ -45,6 +55,8 @@
 
     <form action="index.php" method="post" class="foldedCorner">
         <h2>Commenter</h2>
+
+
 
         <div class="formComment formGrid">
             <label for="pseudo">Pseudonyme</label>
